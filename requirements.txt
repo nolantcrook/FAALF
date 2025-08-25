@@ -1,0 +1,2 @@
+# Python dependencies for AWS Lambda Claude function
+boto3

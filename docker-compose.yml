@@ -1,0 +1,15 @@
+services:
+  claude-lambda:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ~/.aws:/home/sbx_user1051/.aws:ro
+    ports:
+      - "9000:8080"
+    env_file:
+      - .env
+    user: "1051:1051"
+    environment:
+      - AWS_PROFILE=default
+      - HOME=/home/sbx_user1051
