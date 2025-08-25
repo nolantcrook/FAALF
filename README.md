@@ -1,18 +1,18 @@
 # Claude Code Lambda Function
 
-Introducing FAALF (yeah I could do better) - **F**lexible **A**gent **A**s a **L**ambda **F**unction
+Introducing FAALF (yeah I could do better) - <ins>F</ins>lexible <ins>A</ins>gent <ins>A</ins>s a <ins>L</ins>ambda <ins>F</ins>unction
 
 This project provides a Docker container that runs Claude Code inside a Lambda function, allowing you to send flexible requests such as:
 
--write a script and execute it then return the results
--search the web, summarize, return results
--analyze my cloud infra and make changes (depending on permissions) or just give recommendations
--search my databases, query data, write a script to visualize, email me the resulting graph
--...the possibilities are endless!
+- write a script and execute it then return the results
+- search the web, summarize, return results
+- analyze my cloud infra and make changes (depending on permissions) or just give recommendations
+- search my databases, query data, write a script to visualize, email me the resulting graph
+- ...the possibilities are endless!
 
 Claude code is granted "--dangerously-skip-permissions" - meaning it has permissions for all actions.  However, guardrails for the lambda can be established using IAM permissions.  
 
-This gives claude code full flexibility within its own ephemeral lambda sandbox space, but security is maintained through the IAM permission boundaries.
+This gives claude code full flexibility within its own ephemeral lambda sandbox space, but security is maintained through the IAM permission boundaries, trust relationships, or network configurations.
 
 ## Overview
 
