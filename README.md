@@ -95,6 +95,11 @@ curl -X POST "http://localhost:9000/2015-03-31/functions/function/invocations" \
 python test_lambda.py
 ```
 
+## Testing
+
+- **Local testing**: Use `test_local.py` for testing the Lambda function locally
+- **Remote testing**: Use `test_lambda.py` for testing the deployed Lambda function on AWS
+
 ### Request Format
 
 ```json
