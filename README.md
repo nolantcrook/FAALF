@@ -7,7 +7,7 @@ This project provides a Docker container that runs Claude Code inside a Lambda f
 - write a script, execute it, then return the results
 - search the web, summarize
 - analyze my cloud infra and give recommendations for cost optimization or security improvements
-- search my databases, write a sql script, query data, write a python script to visualize, email me the resulting graph using SES
+- search my databases, query data, visualize, email the resulting graph
 - recursive calls by a "parent" FAALF, spawning child tasks for task parallelization (be careful!)
 - ...the possibilities are endless! 
 
