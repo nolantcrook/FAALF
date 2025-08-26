@@ -24,7 +24,7 @@ def test_lambda_function():
     try:
         # Invoke the Lambda function
         response = lambda_client.invoke(
-            FunctionName='aalf-function',
+            FunctionName='faalf-function',
             InvocationType='RequestResponse',
             Payload=json.dumps(test_payload)
         )

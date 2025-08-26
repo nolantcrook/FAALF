@@ -1,18 +1,19 @@
 # Claude Code Lambda Function
 
-Introducing FAALF (yeah I could do better) - <ins>F</ins>lexible <ins>A</ins>gent <ins>A</ins>s a <ins>L</ins>ambda <ins>F</ins>unction
+Introducing FAALF - <ins>F</ins>lexible <ins>A</ins>gent <ins>A</ins>s a <ins>L</ins>ambda <ins>F</ins>unction
 
 This project provides a Docker container that runs Claude Code inside a Lambda function, allowing you to send flexible requests such as:
 
-- write a script and execute it then return the results
-- search the web, summarize, return results
-- analyze my cloud infra and make changes (depending on permissions) or just give recommendations
-- search my databases, query data, write a script to visualize, email me the resulting graph
-- ...the possibilities are endless!
+- write a script, execute it, then return the results
+- search the web, summarize
+- analyze my cloud infra and give recommendations for cost optimization or security improvements
+- search my databases, write a sql script, query data, write a python script to visualize, email me the resulting graph using SES
+- recursive calls by a "parent" FAALF, spawning child tasks for task parallelization (be careful!)
+- ...the possibilities are endless! 
 
-Claude code is granted "--dangerously-skip-permissions" - meaning it has permissions for all actions.  However, guardrails for the lambda can be established using IAM permissions.  
+Claude code is granted "--dangerously-skip-permissions" - meaning it has permissions for all actions within the lambda itself.  Guardrails for the lambda can be established using IAM permissions.  
 
-This gives claude code full flexibility within its own ephemeral lambda sandbox space, but security is maintained through the IAM permission boundaries, trust relationships, or network configurations.
+This gives claude code full flexibility within its own ephemeral lambda sandbox space, but security is maintained through IAM least-privilege boundaries, trust relationships, and network configurations.
 
 ## Overview
 
@@ -29,7 +30,7 @@ The system consists of:
 Client Request → Lambda Function → Secrets Manager → Claude Code → Python Execution → Response
 ```
 
-1. Client sends JSON payload with coding task
+1. Client invokes JSON payload with coding or research task
 2. Lambda function retrieves Anthropic API key from AWS Secrets Manager
 3. Lambda function creates temporary workspace
 4. Claude Code processes the request using the API key
@@ -66,7 +67,7 @@ This script will:
 - Create or update the Lambda function
 - Set up proper IAM permissions for Secrets Manager access
 
-### Local Testing
+### Local Testing Setup
 
 1. **Ensure AWS credentials are configured:**
 ```bash
@@ -80,7 +81,7 @@ This script will:
 docker-compose up -d
 ```
 
-3. **Send a test request:**
+3. **Send a test request via curl:**
 ```bash
 curl -X POST "http://localhost:9000/2015-03-31/functions/function/invocations" \
   -H "Content-Type: application/json" \
@@ -92,10 +93,10 @@ curl -X POST "http://localhost:9000/2015-03-31/functions/function/invocations" \
 
 4. **Or use the test script:**
 ```bash
-python test_lambda.py
+python test_local.py
 ```
 
-## Testing
+## Testing Scripts
 
 - **Local testing**: Use `test_local.py` for testing the Lambda function locally
 - **Remote testing**: Use `test_lambda.py` for testing the deployed Lambda function on AWS
@@ -104,7 +105,7 @@ python test_lambda.py
 
 ```json
 {
-  "task": "your coding request here",
+  "task": "your coding or research request here",
   "execute": true  // optional, defaults to false
 }
 ```
