@@ -177,3 +177,13 @@ Your AWS user/role needs the following permissions:
 - **Local testing fails**: Ensure your `~/.aws/` directory contains valid credentials
 - **Secrets Manager access denied**: Check IAM permissions and region settings
 - **Docker build issues**: Ensure you have sufficient disk space and network access
+
+## Future Work
+
+- What happens with large libraries like numpy/pandas/sklearn? Is the image too big for the lambda?
+- Can I do 'pip install xyz' within the same runtime? How do I end gracefully if too much memory is consumed?
+- Optimizing tokens/model.  Adding an option for model selection for cheaper claude LLM's?
+- How do I include the option for using my subscription token instead of an API key?
+- How do I map iam permissions to FAALF's with different purposes (managing EKS vs sending SES emails)? do I create lambdas with custom least-privelege permissions at runtime?
+- Add a "circuit breaker" for too many recursive invocations?
+- Cost threshold - can I get the session $ cost that my lambda has used before making another claude api call?
