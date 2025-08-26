@@ -180,10 +180,10 @@ Your AWS user/role needs the following permissions:
 
 ## Future Work
 
-- What happens with large libraries like numpy/pandas/sklearn? Is the image too big for the lambda?
-- Can I do 'pip install xyz' within the same runtime? How do I end gracefully if too much memory is consumed?
-- Optimizing tokens/model.  Adding an option for model selection for cheaper claude LLM's?
-- How do I include the option for using my subscription token instead of an API key?
-- How do I map iam permissions to FAALF's with different purposes (managing EKS vs sending SES emails)? do I create lambdas with custom least-privelege permissions at runtime?
-- Add a "circuit breaker" for too many recursive invocations?
-- Cost threshold - can I get the session $ cost that my lambda has used before making another claude api call?
+- Effect of large libraries like numpy/pandas/sklearn - large images
+- Check ability to do 'pip install xyz' within the same runtime
+- Optimizing tokens/model.  Adding an option for model selection for cheaper models
+- Selection of subscription vs API key
+- Mapping IAM least-privelege permissions to specific FAALF prompt purposes
+- "circuit breaker" for too many recursive invocations
+- Cost threshold for api calls
