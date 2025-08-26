@@ -8,8 +8,8 @@ if [ -f .env ]; then
 fi
 
 # Configuration
-ECR_REPO_NAME="aalf"
-LAMBDA_FUNCTION_NAME="aalf-function"
+ECR_REPO_NAME="faalf"
+LAMBDA_FUNCTION_NAME="faalf-function"
 AWS_REGION=${region}
 AWS_ACCOUNT_ID=$(aws sts get-caller-identity --query Account --output text)
 SECRET_NAME="anthropic-api-key-secret"
@@ -78,7 +78,7 @@ else
     echo "Creating new Lambda function..."
     
     # Create execution role if it doesn't exist
-    ROLE_NAME="aalf-lambda-role"
+    ROLE_NAME="faalf-lambda-role"
     ROLE_ARN=$(aws iam get-role --role-name $ROLE_NAME --query 'Role.Arn' --output text 2>/dev/null || echo "")
     
     if [ -z "$ROLE_ARN" ]; then
